@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "taralite",
+    "password": null,
+    "database": "taralite",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "taralite",
+    "password": null,
+    "database": "taralite",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "taralite",
+    "password": null,
+    "database": "taralite",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
