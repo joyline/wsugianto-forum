@@ -13,6 +13,18 @@ const loginUser = function(req, res) {
     })
 }
 
+const logoutUser = function(req, res) {
+    // console.log("loginUser dari userService")
+
+    return Model.Users.findOne({where: {email: req.email, password: req.password}}) 
+    .then((res) => {
+        return res
+    })
+    .catch((err)=>{
+        return err
+    })
+}
+
 const registerUser = function(req, res) {
     // console.log("ini createUser dari userService")
     return Model.Users.create({
@@ -57,6 +69,7 @@ const changePassword = function(req, res) {
 
 module.exports = {
     loginUser,
+    logoutUser,
     registerUser,
     changePassword,
 

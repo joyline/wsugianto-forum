@@ -6,8 +6,20 @@ const userService = require('../services/userService')
 
 const login = function(req, res) {
     // need some JWT
-    console.log("login controller")
+    // console.log("login controller")
     return userService.loginUser(req.body, res)
+    .then((data)=>{
+        res.send(data)
+    })
+    .catch((err)=>{
+        res.send(err)
+    })
+}
+
+const logout = function(req, res) {
+    // need some JWT
+    // console.log("login controller")
+    return userService.logoutUser(req.body, res)
     .then((data)=>{
         res.send(data)
     })
@@ -41,6 +53,7 @@ const changePassword = function(req, res){
 
 module.exports = {
     login,
+    logout,
     registerUser,
     changePassword,
 

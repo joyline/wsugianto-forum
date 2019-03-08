@@ -9,14 +9,22 @@ const router = express.Router()
 // const userHandler = require('./handlers/User')
 const userController = require('./controllers/userController')
 const postController = require('./controllers/postController')
+const commentController = require('./controllers/commentController')
+
 // var express = require('express');
 // var router = express.Router();
 
 router.get('/login', function (req, res) {
     res.send("ini login get")
 });
-
 router.post('/login', userController.login);
+
+
+router.get('/logout', function (req, res) {
+    res.send("ini logout get")
+});
+router.post('/logout', userController.logout);
+
 // get register
 router.get('/register', function(req, res) {
     res.send('Welcome to Node JS REGISTER');
@@ -54,6 +62,10 @@ router.post('/delete-post', postController.deletePost)
 
 
 // create comment
+router.get('/create-comment', function(req, res){
+    res.send("this is create comment page")
+})
+router.post('/create-comment', commentController.createComment)
 
 // get post by tag
 router.get('/get-post', function(req, res){
