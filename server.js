@@ -7,6 +7,10 @@ const port = 3000
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
+app.use(bodyParser.urlencoded());
+// in latest body-parser use like below.
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // router.get('/', (req, res) => res.send('in the home page'))
 // router.get('/about', (req, res)=> res.send("in about page"))
 

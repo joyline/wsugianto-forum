@@ -10,9 +10,9 @@ const router = express.Router()
 const userController = require('./controllers/userController')
 const postController = require('./controllers/postController')
 const commentController = require('./controllers/commentController')
+const validatorController = require('./controllers/validatorController')
 
-// var express = require('express');
-// var router = express.Router();
+const jwt = require('jsonwebtoken')
 
 router.get('/login', function (req, res) {
     res.send("ini login get")
@@ -35,6 +35,7 @@ router.get('/change-password', function(req, res) {
     res.send('Welcome to Node JS changePassword');
 });
 router.post('/change-password', userController.changePassword);
+// router.post('/change-password', verifyToken, userController.changePassword);
 // create update delete forum
 // create post
 router.get('/create-post', function(req, res){
@@ -53,6 +54,7 @@ router.get('/update-post', function(req, res){
     res.send("this is update post page")
 })
 router.post('/update-post', postController.updatePost)
+// router.post('/update-post', verifyToken, postController.updatePost)
 
 // delete post
 router.get('/delete-post', function(req, res){
@@ -79,9 +81,28 @@ router.get('/search-post', function(req, res){
 })
 router.post('/search-post', postController.searchPostByTitle)
 
+router.get('/validate-token', function(req, res){
+    res.send("this is validate token")
+})
+router.post('/validate-token', validatorController.validateToken)
+
 // router.use('/users', require('./users'))//.router);
 // router.use('/api/v1', require('./routes'));
 // router.use('/api/v2', require('./routes2'));
+
+
+function verifyToken(req, res, next) {
+    const bearerHeader = req.headers['authorization']
+    if(typeof bearerHeader !== "undefined") {
+        const bearer = bearerHeader.split(' ')
+        const bearerToken = bearer[1]
+        req.token = bearerToken
+        
+        next()
+    } else {
+        res.sendStatus(403)
+    }
+}
 
 module.exports = router;
 

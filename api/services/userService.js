@@ -1,10 +1,12 @@
 const Model = require('../../models')
 // module.exports.login = () =>
 // return
+
+const jwt = require('jsonwebtoken')
+
 const loginUser = function(req, res) {
     // console.log("loginUser dari userService")
-
-    return Model.Users.findOne({where: {email: req.email, password: req.password}}) 
+    return Model.Users.findOne({where: {email: req.email, password: req.password}, attributes: {exclude: ['createdAt', 'updatedAt']}}) 
     .then((res) => {
         return res
     })
